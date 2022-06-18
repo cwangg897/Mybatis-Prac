@@ -1,2 +1,5 @@
-package com.example.clone.util;public class UserLevel {
+package com.example.clone.util;
+
+public enum UserLevel {
+    USER, OWNER, RIDER
 }

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.clone.mapper.UserMapper" >
+    
+    <insert id="insertUser" parameterType="com.example.clone.dto.UserDto">
+        INSERT INTO USER(id, password, level)
+        VALUES (#{id}, #{password}, #{level})
+    </insert>
+    
+    
+    <select id="findById" resultType="com.example.clone.dto.UserDto">
+        SELECT id, password, level
+        FROM USER
+        WHERE id = #{id}
+    </select>
+
+    <select id="isExistId" resultType="boolean">
+        SELECT EXISTS
+                   (SELECT id FROM USER WHERE id = #{id})
+    </select>
+
+
+
+</mapper>
