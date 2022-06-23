@@ -8,6 +8,8 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Slf4j
 @Service
 @RequiredArgsConstructor
@@ -35,6 +37,13 @@ public class UserServiceImpl implements UserService {
         userMapper.insertUser(insertUser);
     }
 
+    @Override
+    public void login(UserDto userDto) {
+        Optional<UserDto> findUser = userMapper.findUserByIdAndPassword(userDto.getId(), passwordEncrypt(userDto.getPassword()));
+        if(findUser == null){
+            throw new RuntimeException("존재하지 않는 아이디입니다");
+        }
+    }
 
 
     public String passwordEncrypt(String password){
